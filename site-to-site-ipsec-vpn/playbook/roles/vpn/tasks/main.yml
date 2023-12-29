@@ -1,0 +1,3 @@
+- name: Configure vpn
+  vyos.vyos.vyos_config:
+    src: ipsec.j2

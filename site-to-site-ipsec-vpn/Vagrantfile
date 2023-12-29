@@ -1,0 +1,68 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+    # Customize Virtualbox
+    config.vm.provider "virtualbox" do |v|
+      v.memory = 512
+      v.cpus = 1 
+      v.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+    end
+  config.vm.define :vyos1 do |vyos1|
+    vyos1.vm.box = "vyos/current"
+    vyos1.vm.box_version  = "20230907.00.21"
+    vyos1.vm.network "private_network", ip: "192.168.56.11"
+    vyos1.vm.network "private_network", ip: "192.168.101.11", virtualbox__intnet: "network1"
+    vyos1.ssh.password = 'vyos'
+    vyos1.ssh.insert_key = false
+    vyos1.vm.synced_folder '.', '/vagrant', disabled: true
+    vyos1.vm.provider :virtualbox do |vb|
+      vb.customize ['modifyvm',:id,'--nicpromisc2','allow-all']
+      vb.customize ['modifyvm',:id,'--nicpromisc3','allow-all']
+    end
+  end
+
+  config.vm.define :vyos2 do |vyos2|
+    vyos2.vm.box = "vyos/current"
+    vyos2.vm.box_version  = "20230907.00.21"
+    vyos2.vm.network "private_network", ip: "192.168.56.12"
+    vyos2.vm.network "private_network", ip: "192.168.102.11", virtualbox__intnet: "network2"
+    vyos2.ssh.password = 'vyos'
+    vyos2.ssh.insert_key = false
+    vyos2.vm.synced_folder '.', '/vagrant', disabled: true
+    vyos2.vm.provider :virtualbox do |vb|
+      vb.customize ['modifyvm',:id,'--nicpromisc2','allow-all']
+      vb.customize ['modifyvm',:id,'--nicpromisc3','allow-all']
+    end
+  end
+
+  config.vm.define :debian1 do |debian1|
+    debian1.vm.box = "debian/bullseye64"
+    debian1.vm.network "private_network", type: "dhcp", virtualbox__intnet: "network1"
+    debian1.vm.synced_folder '.', '/vagrant', disabled: true
+  end
+
+  config.vm.define :debian2 do |debian2|
+    debian2.vm.box = "debian/bullseye64"
+    debian2.vm.network "private_network", type: "dhcp", virtualbox__intnet: "network2"
+    debian2.vm.synced_folder '.', '/vagrant', disabled: true
+  end
+#  config.vm.synced_folder '.', '/vagrant', disabled: true
+#  config.ssh.insert_key = false
+  
+  config.vm.provision "ansible" do |ansible|
+    ansible.galaxy_role_file = "./requirements.yml"
+    ansible.playbook = "playbook/site.yml"
+    ansible.groups = {
+      "vyos" => ["vyos1", "vyos2"],
+      "vyos:vars" => {
+        "ansible_ssh_pass" => 'vyos' }
+      
+    }
+    ansible.verbose = "v"
+  end
+end
+

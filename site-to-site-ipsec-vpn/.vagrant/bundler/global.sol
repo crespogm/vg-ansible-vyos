@@ -1,0 +1,1 @@
+{"dependencies":[["vagrant-vyos",["= 1.1.10"]],["rake",[">= 0"]],["virtualbox_WSL2",["= 0.1.3"]]],"checksum":"f8380581cd8fcbbf7bb998dfcfc8d1d1272b4aed4a6ae0f91ed2e57b72a65342","vagrant_version":"2.3.7"}
