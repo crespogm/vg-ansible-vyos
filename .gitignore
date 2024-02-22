@@ -1,0 +1,4 @@
+.vagrant/
+site-to-site-ipsec-vpn/.vagrant/
+site-to-site-static-route/.vagrant/
+poetry.lock

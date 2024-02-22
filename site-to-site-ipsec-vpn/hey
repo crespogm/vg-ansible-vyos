@@ -1,0 +1,85 @@
+hey -c 400 -n 30000 http://192.168.101.20
+
+Summary:
+  Total:        21.1526 secs
+  Slowest:      0.8901 secs
+  Fastest:      0.0032 secs
+  Average:      0.2779 secs
+  Requests/sec: 1418.2632
+  
+
+Response time histogram:
+  0.003 [1]     |
+  0.092 [458]   |■
+  0.181 [1540]  |■■■
+  0.269 [3972]  |■■■■■■■
+  0.358 [23299] |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.447 [363]   |■
+  0.535 [179]   |
+  0.624 [54]    |
+  0.713 [102]   |
+  0.801 [31]    |
+  0.890 [1]     |
+
+
+Latency distribution:
+  10% in 0.2373 secs
+  25% in 0.2740 secs
+  50% in 0.2860 secs
+  75% in 0.2961 secs
+  90% in 0.3074 secs
+  95% in 0.3177 secs
+  99% in 0.4514 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:   0.0024 secs, 0.0032 secs, 0.8901 secs
+  DNS-lookup:   0.0000 secs, 0.0000 secs, 0.0000 secs
+  req write:    0.0014 secs, 0.0000 secs, 0.6058 secs
+  resp wait:    0.2724 secs, 0.0029 secs, 0.5842 secs
+  resp read:    0.0015 secs, 0.0000 secs, 0.3667 secs
+
+Status code distribution:
+  [200] 30000 responses
+
+hey -c 400 -n 300000 http://192.168.101.20
+^[[A
+Summary:
+  Total:        196.5240 secs
+  Slowest:      1.1209 secs
+  Fastest:      0.0013 secs
+  Average:      0.2612 secs
+  Requests/sec: 1526.5310
+  
+
+Response time histogram:
+  0.001 [1]     |
+  0.113 [3805]  |■
+  0.225 [84660] |■■■■■■■■■■■■■■■■■■■■
+  0.337 [171775]        |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+  0.449 [33757] |■■■■■■■■
+  0.561 [5112]  |■
+  0.673 [444]   |
+  0.785 [360]   |
+  0.897 [81]    |
+  1.009 [2]     |
+  1.121 [3]     |
+
+
+Latency distribution:
+  10% in 0.1610 secs
+  25% in 0.2143 secs
+  50% in 0.2592 secs
+  75% in 0.3023 secs
+  90% in 0.3525 secs
+  95% in 0.3918 secs
+  99% in 0.4883 secs
+
+Details (average, fastest, slowest):
+  DNS+dialup:   0.0002 secs, 0.0013 secs, 1.1209 secs
+  DNS-lookup:   0.0000 secs, 0.0000 secs, 0.0000 secs
+  req write:    0.0005 secs, 0.0000 secs, 0.5204 secs
+  resp wait:    0.2573 secs, 0.0011 secs, 0.6784 secs
+  resp read:    0.0023 secs, 0.0000 secs, 0.5180 secs
+
+Status code distribution:
+  [200] 300000 responses

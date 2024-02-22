@@ -2,7 +2,7 @@
 name = "vagrant-ansible-examples-with-vyos"
 version = "0.1.0"
 description = ""
-authors = ["Yuya Kusakabe <yuya.kusakabe@gmail.com>"]
+authors = ["Gonzalo Crespo <gonzalomcrespo@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
