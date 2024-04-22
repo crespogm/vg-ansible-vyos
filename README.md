@@ -13,8 +13,9 @@ vagrant plugin install vagrant-vyos
 **Python and poetry**
 
 ```
-sudo apt install python3 python3-pip python3-poetry
-pip3 install poetry
+#sudo apt install python3 python3-pip python3-poetry
+#pip3 install poetry
+curl -sSL https://install.python-poetry.org | python3 - 
 ```
 
 **Colecciones de Ansible**
